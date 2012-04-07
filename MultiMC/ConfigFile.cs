@@ -112,6 +112,28 @@ namespace MultiMC
 			}
 		}
 
+        // Helpers for Int and Boolean
+        public int this[string key, int def]
+        {
+            get
+            {
+                if (dict.ContainsKey(key))
+                    return Convert.ToInt32(dict[key]);
+                else
+                    return def;
+            }
+        }
+        public bool this[string key, bool def]
+        {
+            get
+            {
+                if (dict.ContainsKey(key))
+                    return bool.Parse(dict[key]);
+                else
+                    return def;
+            }
+        }
+
 		public string this[string key]
 		{
 			get { return dict[key]; }
@@ -127,6 +149,18 @@ namespace MultiMC
 		{
 			return dict.Remove(key);
 		}
+
+        public bool RemoveIfExists(string key)
+        {
+            if (dict.ContainsKey(key))
+            {
+                return dict.Remove(key);
+            }
+            else
+            {
+                return false;
+            }
+        }
 
 		public T ParseSetting<T>(string settingName, T defValue)
 		{

@@ -109,7 +109,7 @@ namespace MultiMC.WinGUI
 					}
 
 					buttonClose.Enabled = true;
-					if ((AppSettings.Main.AutoCloseConsole || !this.Visible) && !gameCrashed)
+					if ((inst.AutoCloseConsole || !this.Visible) && !gameCrashed)
 					{
 						Close();
 					}
@@ -119,8 +119,8 @@ namespace MultiMC.WinGUI
 
 		public bool ShowConsole
 		{
-			get { return AppSettings.Main.ShowConsole; }
-			set { AppSettings.Main.ShowConsole = value; this.Visible = ShowConsole; }
+			get { return inst.ShowConsole; }
+			set { inst.ShowConsole = value; this.Visible = ShowConsole; }
 		}
 
 		public event EventHandler ConsoleClosed;

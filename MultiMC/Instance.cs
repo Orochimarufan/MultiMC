@@ -205,6 +205,15 @@ namespace MultiMC
 			return true;
 		}
 
+        /// <summary>
+        /// Provide the instance's config
+        /// </summary>
+        /// <returns>The instance's ConfigFile</returns>
+        public ConfigFile getConfig()
+        {
+            return this.cfgFile;
+        }
+
 		/// <summary>
 		/// Launches the instance
 		/// </summary>
@@ -226,8 +235,9 @@ namespace MultiMC
 				}
 			}
 			
-			int xms = AppSettings.Main.MinMemoryAlloc;
-			int xmx = AppSettings.Main.MaxMemoryAlloc;
+            // MODIFIED HERE
+            int xms = cfgFile["mem_min", AppSettings.Main.MinMemoryAlloc];
+            int xmx = cfgFile["mem_max", AppSettings.Main.MaxMemoryAlloc];
 			string javaPath = AppSettings.Main.JavaPath;
 			
 			instProc = new Process();
@@ -340,6 +350,28 @@ namespace MultiMC
 			get { return cfgFile.ParseSetting<bool>("AskUpdate", true); }
 			set { cfgFile["AskUpdate"] = value.ToString(); }
 		}
+
+        //the Override Settings
+        public bool ShowConsole
+        {
+            get { return cfgFile["console_show", AppSettings.Main.ShowConsole]; }
+            set { cfgFile["console_show"] = value.ToString(); }
+        }
+        public bool AutoCloseConsole
+        {
+            get { return cfgFile["console_autoclose", AppSettings.Main.AutoCloseConsole]; }
+            set { cfgFile["console_autoclose"] = value.ToString(); }
+        }
+        public int MaxMemoryAlloc
+        {
+            get { return cfgFile["mem_max", AppSettings.Main.MaxMemoryAlloc]; }
+            set { cfgFile["mem_max"] = value.ToString(); }
+        }
+        public int MinMemoryAlloc
+        {
+            get { return cfgFile["mem_min", AppSettings.Main.MinMemoryAlloc]; }
+            set { cfgFile["mem_min"] = value.ToString(); }
+        }
 
 		#region Directories
 

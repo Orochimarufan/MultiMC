@@ -692,5 +692,11 @@ namespace MultiMC.WinGUI
 					instView.SelectedItems[0].BeginEdit();
 			}
 		}
+
+        private void optionsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            InstanceOptions dlg = new InstanceOptions(SelectedInst);
+            dlg.ShowDialog(this);
+        }
 	}
 }
