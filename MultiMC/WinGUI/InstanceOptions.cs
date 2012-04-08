@@ -35,10 +35,10 @@ namespace MultiMC.WinGUI
             this.instance = instance;
             this.cfg = instance.getConfig();
 
-            Load();
+            LoadValues();
         }
 
-        private void Load()
+        private void LoadValues()
         {
             // initialize options
             check_defaultMemMax.Checked = !cfg.ContainsKey("mem_max");
@@ -80,7 +80,7 @@ namespace MultiMC.WinGUI
             return ConditionalSetOrRemove(condition,key,Convert.ToString(value));
         }
 
-        private void Save()
+        private void SaveValues()
         {
             ConditionalSetOrRemove(!check_defaultMemMax.Checked, "mem_max", (int)spinner_MemMax.Value);
             ConditionalSetOrRemove(!check_defaultMemMin.Checked, "mem_min", (int)spinner_MemMin.Value);
@@ -92,7 +92,7 @@ namespace MultiMC.WinGUI
         protected override void OnResponse(DialogResponse response)
         {
             if (response == DialogResponse.OK)
-                Save();
+                SaveValues();
 
             this.Close();
 
@@ -109,7 +109,6 @@ namespace MultiMC.WinGUI
         {
             OnResponse(GUI.DialogResponse.OK);
         }
-        #endregion
 
         private void check_defaultMemMin_CheckedChanged(object sender, EventArgs e)
         {
@@ -130,5 +129,6 @@ namespace MultiMC.WinGUI
         {
             check_AutoClose.Enabled = !check_defaultAutoClose.Checked;
         }
+        #endregion
     }
 }

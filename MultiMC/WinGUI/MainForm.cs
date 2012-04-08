@@ -24,6 +24,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.IO;
 
+using MultiMC;
 using MultiMC.GUI;
 using MultiMC.Tasks;
 
@@ -112,6 +113,7 @@ namespace MultiMC.WinGUI
 				AnchorStyles.Right | AnchorStyles.Bottom;
 			taskStatusStrip.AutoSize = true;
 			taskStatusStrip.LayoutStyle = ToolStripLayoutStyle.HorizontalStackWithOverflow;
+			taskStatusStrip.SizingGrip = false;
 
 			// Status label
 			ToolStripStatusLabel statusLabel = new ToolStripStatusLabel(task.Status);
@@ -484,6 +486,8 @@ namespace MultiMC.WinGUI
 			set
 			{
 				_ddHint = value;
+				DragDropHintLabel.Text = _ddHint;
+				DragDropHintLabel.Visible = !string.IsNullOrEmpty(_ddHint);
 			}
 		}
 
@@ -674,7 +678,7 @@ namespace MultiMC.WinGUI
 			ListViewItem item = instView.Items[e.Item];
 			Instance inst = (item.Tag as Instance);
 
-			if (Instance.NameIsValid(e.Label))
+			if (e.Label != null && Instance.NameIsValid(e.Label))
 			{
 				inst.Name = e.Label;
 			}
