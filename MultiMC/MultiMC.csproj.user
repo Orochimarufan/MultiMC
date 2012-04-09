@@ -22,4 +22,8 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
     <StartArguments>--gtk</StartArguments>
   </PropertyGroup>
+  <PropertyGroup>
+    <ReferencePath>
+    </ReferencePath>
+  </PropertyGroup>
 </Project>

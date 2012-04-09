@@ -96,6 +96,11 @@ namespace MultiMC.GTKGUI
 			throw new NotImplementedException();
 		}
 
+		public IDialog InstanceOptionsDialog(Instance inst)
+		{
+			throw new NotImplementedException();
+		}
+
 		public void Run(IMainWindow mainWindow)
 		{
 			this.mainWindow = (mainWindow as GTKWindow);

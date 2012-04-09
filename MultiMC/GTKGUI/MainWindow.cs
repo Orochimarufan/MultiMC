@@ -328,6 +328,8 @@ namespace MultiMC.GTKGUI
 
 		public event EventHandler<InstActionEventArgs> DeleteInstClicked;
 
+		public event EventHandler<InstActionEventArgs> OptionsInstClicked;
+
 		public IImageList ImageList
 		{
 			get { return _imageList; }
