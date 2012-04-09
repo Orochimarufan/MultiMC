@@ -246,10 +246,11 @@ namespace MultiMC
 			//mcProcStart.FileName = "cmd";
 			mcProcStart.FileName = javaPath;
 			mcProcStart.Arguments = string.Format(
-				"-Xmx{4}m -Xms{5}m " +
+				"-Xmx{4}m -Xms{5}m -cp \"{6}\" " +
 				"{0} \"{1}\" \"{2}\" {3}",
-				"MultiMCLauncher", Path.GetFullPath(MinecraftDir), username, sessionID,
-				xmx, xms);
+				Properties.Resources.LauncherClassName, 
+				Path.GetFullPath(MinecraftDir), username, sessionID,
+				xmx, xms, Environment.CurrentDirectory);
 
 			instProc.EnableRaisingEvents = true;
 			mcProcStart.CreateNoWindow = true;
@@ -702,7 +703,7 @@ namespace MultiMC
 				if (!modList.Contains(s))
 					throw new KeyNotFoundException("Can't change index of something " +
 					                               "that isn't in the list!");
-				Remove(s);
+				Remove(s, false);
 				modList.Insert(value, s);
 			}
 		}
@@ -716,7 +717,7 @@ namespace MultiMC
 					throw new KeyNotFoundException("Can't change index of something " +
 												   "that isn't in the list!");
 				Mod mod = modList.First(m => m.FileName == s);
-				Remove(mod);
+				Remove(mod, false);
 				modList.Insert(value, mod);
 			}
 		}
