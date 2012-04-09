@@ -209,10 +209,9 @@ namespace MultiMC
         /// <summary>
         /// Provide the instance's config
         /// </summary>
-        /// <returns>The instance's ConfigFile</returns>
-        public ConfigFile getConfig()
+        public ConfigFile Config
         {
-            return this.cfgFile;
+            get { return this.cfgFile; }
         }
 
 		/// <summary>
@@ -237,8 +236,8 @@ namespace MultiMC
 			}
 			
             // MODIFIED HERE
-            int xms = cfgFile["mem_min", AppSettings.Main.MinMemoryAlloc];
-            int xmx = cfgFile["mem_max", AppSettings.Main.MaxMemoryAlloc];
+            int xms = cfgFile.ParseSetting("mem_min", AppSettings.Main.MinMemoryAlloc);
+            int xmx = cfgFile.ParseSetting("mem_max", AppSettings.Main.MaxMemoryAlloc);
 			string javaPath = AppSettings.Main.JavaPath;
 			
 			instProc = new Process();
@@ -355,22 +354,22 @@ namespace MultiMC
         //the Override Settings
         public bool ShowConsole
         {
-            get { return cfgFile["console_show", AppSettings.Main.ShowConsole]; }
+            get { return cfgFile.ParseSetting("console_show", AppSettings.Main.ShowConsole); }
             set { cfgFile["console_show"] = value.ToString(); }
         }
         public bool AutoCloseConsole
         {
-            get { return cfgFile["console_autoclose", AppSettings.Main.AutoCloseConsole]; }
+            get { return cfgFile.ParseSetting("console_autoclose", AppSettings.Main.AutoCloseConsole); }
             set { cfgFile["console_autoclose"] = value.ToString(); }
         }
         public int MaxMemoryAlloc
         {
-            get { return cfgFile["mem_max", AppSettings.Main.MaxMemoryAlloc]; }
+            get { return cfgFile.ParseSetting("mem_max", AppSettings.Main.MaxMemoryAlloc); }
             set { cfgFile["mem_max"] = value.ToString(); }
         }
         public int MinMemoryAlloc
         {
-            get { return cfgFile["mem_min", AppSettings.Main.MinMemoryAlloc]; }
+            get { return cfgFile.ParseSetting("mem_min", AppSettings.Main.MinMemoryAlloc); }
             set { cfgFile["mem_min"] = value.ToString(); }
         }
 

@@ -112,27 +112,6 @@ namespace MultiMC
 			}
 		}
 
-        // Helpers for Int and Boolean
-        public int this[string key, int def]
-        {
-            get
-            {
-                if (dict.ContainsKey(key))
-                    return Convert.ToInt32(dict[key]);
-                else
-                    return def;
-            }
-        }
-        public bool this[string key, bool def]
-        {
-            get
-            {
-                if (dict.ContainsKey(key))
-                    return bool.Parse(dict[key]);
-                else
-                    return def;
-            }
-        }
 		// Helpers to Set a value if a condition is true and Remove it otherwise
 		public void ConditionalSoR(bool condition, string key, string value)
 		{
@@ -148,11 +127,7 @@ namespace MultiMC
 				}
 			}
 		}
-		public void ConditionalSoR(bool condition, string key, bool value)
-		{
-			this.ConditionalSoR(condition,key,value.ToString());
-		}
-		public void ConditionalSoR(bool condition, string key, int value)
+		public void ConditionalSoR<T>(bool condition, string key, T value)
 		{
 			this.ConditionalSoR(condition,key,value.ToString());
 		}

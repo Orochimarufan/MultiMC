@@ -33,7 +33,7 @@ namespace MultiMC.WinGUI
 
 			// initialize fields
 			this.instance = instance;
-			this.cfg = instance.getConfig();
+			this.cfg = instance.Config;
 
 			LoadValues();
 		}
@@ -43,19 +43,19 @@ namespace MultiMC.WinGUI
 			// initialize options
 			check_defaultMemMax.Checked = !cfg.ContainsKey("mem_max");
 			spinner_MemMax.Enabled = cfg.ContainsKey("mem_max");
-			spinner_MemMax.Value = cfg["mem_max", AppSettings.Main.MaxMemoryAlloc];
+			spinner_MemMax.Value = cfg.ParseSetting("mem_max", AppSettings.Main.MaxMemoryAlloc);
 
 			check_defaultMemMin.Checked = !cfg.ContainsKey("mem_min");
 			spinner_MemMin.Enabled = cfg.ContainsKey("mem_min");
-			spinner_MemMin.Value = cfg["mem_min", AppSettings.Main.MinMemoryAlloc];
+			spinner_MemMin.Value = cfg.ParseSetting("mem_min", AppSettings.Main.MinMemoryAlloc);
 
 			check_defaultShowConsole.Checked = !cfg.ContainsKey("console_show");
 			check_ShowConsole.Enabled = cfg.ContainsKey("console_show");
-			check_ShowConsole.Checked = cfg["console_show", AppSettings.Main.ShowConsole];
+			check_ShowConsole.Checked = cfg.ParseSetting("console_show", AppSettings.Main.ShowConsole);
 
 			check_defaultAutoClose.Checked = !cfg.ContainsKey("console_autoclose");
 			check_AutoClose.Enabled = cfg.ContainsKey("console_autoclose");
-			check_AutoClose.Checked = cfg["console_autoclose", AppSettings.Main.AutoCloseConsole];
+			check_AutoClose.Checked = cfg.ParseSetting("console_autoclose", AppSettings.Main.AutoCloseConsole);
 		}
 
 		private void SaveValues()
