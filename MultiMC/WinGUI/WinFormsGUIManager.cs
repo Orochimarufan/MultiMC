@@ -89,5 +89,11 @@ namespace MultiMC.WinGUI
 		{
 			return new LoginForm(errMsg);
 		}
+
+		public IDialog InstanceOptionsDialog(Instance inst)
+		{
+			return new InstanceOptions(inst);
+		}
+
 	}
 }

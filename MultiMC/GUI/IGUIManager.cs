@@ -34,6 +34,8 @@ namespace MultiMC.GUI
 
 		IDialog DeleteDialog();
 
+		IDialog InstanceOptionsDialog(Instance inst);
+
 		void Run(IMainWindow mainWindow);
 	}
 

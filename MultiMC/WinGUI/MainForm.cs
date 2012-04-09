@@ -397,6 +397,11 @@ namespace MultiMC.WinGUI
 				if (DeleteInstClicked != null)
 					DeleteInstClicked(this, args);
 				break;
+
+			case InstAction.Options:
+				if (OptionsInstClicked != null)
+					OptionsInstClicked(this, args);
+				break;
 			}
 		}
 
@@ -415,10 +420,13 @@ namespace MultiMC.WinGUI
 
 		public event EventHandler<InstActionEventArgs> DeleteInstClicked;
 
+		public event EventHandler<InstActionEventArgs> OptionsInstClicked;
+
 		protected enum InstAction
 		{
 			ChangeIcon,
 			EditNotes,
+			Options,
 
 			EditMods,
 			RebuildJar,
@@ -465,6 +473,11 @@ namespace MultiMC.WinGUI
 		private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			OnInstanceAction(InstAction.Delete);
+		}
+
+		private void optionsToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			OnInstanceAction(InstAction.Options);
 		}
 
 		private void instanceContextMenu_Opening(object sender, CancelEventArgs e)
@@ -696,11 +709,5 @@ namespace MultiMC.WinGUI
 					instView.SelectedItems[0].BeginEdit();
 			}
 		}
-
-        private void optionsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            InstanceOptions dlg = new InstanceOptions(SelectedInst);
-            dlg.ShowDialog(this);
-        }
 	}
 }

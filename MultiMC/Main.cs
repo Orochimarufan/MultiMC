@@ -135,6 +135,9 @@ Details:
 			MainWindow.DeleteInstClicked += 
 				new EventHandler<InstActionEventArgs>(DeleteInstClicked);
 
+			MainWindow.OptionsInstClicked +=
+				new EventHandler<InstActionEventArgs>(OptionsInstClicked);
+
 			MainWindow.ImageList = InstIconList;
 
 			MainWindow.LoadInstances();
@@ -355,6 +358,18 @@ Details:
 			deleteDialog.Parent = MainWindow;
 			deleteDialog.DefaultPosition = DefWindowPosition.CenterParent;
 			deleteDialog.Run();
+		}
+
+		void OptionsInstClicked(object sender, InstActionEventArgs e)
+		{
+			IDialog optionsDialog = GUIManager.Main.InstanceOptionsDialog(e.Inst);
+			optionsDialog.Response += (o, args) =>
+				{
+					optionsDialog.Close();
+				};
+			optionsDialog.Parent = MainWindow;
+			optionsDialog.DefaultPosition = DefWindowPosition.CenterParent;
+			optionsDialog.Run();
 		}
 
 		#endregion

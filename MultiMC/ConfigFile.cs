@@ -133,6 +133,29 @@ namespace MultiMC
                     return def;
             }
         }
+		// Helpers to Set a value if a condition is true and Remove it otherwise
+		public void ConditionalSoR(bool condition, string key, string value)
+		{
+			if (condition)
+			{
+				this.dict[key]=value;
+			}
+			else
+			{
+				if (this.dict.ContainsKey(key))
+				{
+					this.dict.Remove(key);
+				}
+			}
+		}
+		public void ConditionalSoR(bool condition, string key, bool value)
+		{
+			this.ConditionalSoR(condition,key,value.ToString());
+		}
+		public void ConditionalSoR(bool condition, string key, int value)
+		{
+			this.ConditionalSoR(condition,key,value.ToString());
+		}
 
 		public string this[string key]
 		{
@@ -149,18 +172,6 @@ namespace MultiMC
 		{
 			return dict.Remove(key);
 		}
-
-        public bool RemoveIfExists(string key)
-        {
-            if (dict.ContainsKey(key))
-            {
-                return dict.Remove(key);
-            }
-            else
-            {
-                return false;
-            }
-        }
 
 		public T ParseSetting<T>(string settingName, T defValue)
 		{
